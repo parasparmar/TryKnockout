@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Hello, <span data-bind="text: getName()"></span></h1>
+
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/knockout-3.5.0.debug.js"></script>
+    <script>
+
+        function ViewModel(firstName, lastName) {
+            var self = this;
+            self.Name = firstName + ' ' + lastName;
+            self.getName = function () {
+                return self.Name;
+            };
+        }
+
+        var viewModel = new ViewModel('@Model.FirstName', '@Model.LastName');
+        ko.applyBindings(viewModel);
+
+    </script>
+
+
+
+}
