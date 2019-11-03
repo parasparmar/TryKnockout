@@ -12,7 +12,6 @@ namespace TryKnockout.Controllers
         public ActionResult Index()
         {
             Person p = new Person { FirstName="Paras", LastName="Chandrakant Parmar"};
-
             return View(p);
         }
 
