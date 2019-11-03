@@ -7,9 +7,9 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -20,26 +20,37 @@
         <th>
             @Html.DisplayNameFor(model => model.Biography)
         </th>
-        <th></th>
+        <th>
+            Actions
+        </th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Biography)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <tbody data-bind="foreach: authors">
+        <tr>
+            <td data-bind="text: FirstName"></td>
+            <td data-bind="text: LastName"></td>
+            <td data-bind="text: Biography"></td>
+            <td>
+                <a data-bind="attr: {href:'@Url.Action("Details")/'+Id }" class="btn btn-info">Details</a>
+                <a data-bind="attr: {href:'@Url.Action("Edit")/'+Id }" class="btn btn-primary">Edit</a>
+                <a data-bind="attr: {href:'@Url.Action("Delete")/'+Id }" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+    
 
 </table>
+
+
+@section Scripts {
+    <script>
+        function ViewModel(Authors) {
+            var self = this;
+            self.authors = Authors;
+        }
+        var authorsvm = @Html.HtmlConvertToJson(Model);
+        var viewModel = new ViewModel(authorsvm);
+        ko.applyBindings(viewModel);
+
+    </script>
+    
+    }
