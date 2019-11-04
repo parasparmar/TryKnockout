@@ -1,7 +1,10 @@
-﻿@model IEnumerable<TryKnockout.Models.Author>
+﻿
+@using TryKnockout.Models;
+@model IEnumerable<TryKnockout.Models.Author>
 
 @{
     ViewBag.Title = "Index";
+    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
 }
 
 <h2>Index</h2>
@@ -11,18 +14,10 @@
 </p>
 <table class="table table-bordered table-striped">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Biography)
-        </th>
-        <th>
-            Actions
-        </th>
+        <th>@Html.BuildSortableLink("First Name", "Index", "FirstName", queryOptions)</th>
+        <th>@Html.BuildSortableLink("Last Name", "Index", "LastName", queryOptions)</th>
+        <th>@Html.BuildSortableLink("Biography", "Index", "Biography", queryOptions)</th>
+        <th>Actions</th>
     </tr>
     <tbody data-bind="foreach: authors">
         <tr>
