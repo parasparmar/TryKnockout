@@ -31,10 +31,10 @@
             </td>
         </tr>
     </tbody>
-    
+
 
 </table>
-
+@Html.BuildNextPreviousLinks(queryOptions, "Index")
 
 @section Scripts {
     <script>
@@ -47,5 +47,5 @@
         ko.applyBindings(viewModel);
 
     </script>
-    
-    }
+
+}
