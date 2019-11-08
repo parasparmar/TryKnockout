@@ -21,32 +21,33 @@ namespace TryKnockout.Controllers
         public ActionResult Index([Form] QueryOptions queryOptions)
         {
             var start = (queryOptions.CurrentPage - 1) * queryOptions.PageSize;
-            var authors = db.Authors.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize);
-            queryOptions.TotalPages = (int)Math.Ceiling((double)db.Authors.Count()/queryOptions.PageSize);
+            //var authors = db.Authors.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize)
+            var authors = db.Authors.ToList();
+            queryOptions.TotalPages = (int)Math.Ceiling((double)db.Authors.Count() / queryOptions.PageSize);
 
             ViewBag.QueryOptions = queryOptions;
             return View(authors.ToList());
         }
 
         // GET: Authors/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Author author = db.Authors.Find(id);
-            if (author == null)
-            {
-                return HttpNotFound();
-            }
-            return View(author);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Author author = db.Authors.Find(id);
+        //    if (author == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View("Form", author);
+        //}
 
         // GET: Authors/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Form", new Author());
         }
 
         // POST: Authors/Create

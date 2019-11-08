@@ -14,20 +14,20 @@
 </p>
 <table class="table table-bordered table-striped">
     <tr>
-        <th>@Html.BuildSortableLink("First Name", "Index", "FirstName", queryOptions)</th>
-        <th>@Html.BuildSortableLink("Last Name", "Index", "LastName", queryOptions)</th>
-        <th>@Html.BuildSortableLink("Biography", "Index", "Biography", queryOptions)</th>
+        <th>@Html.BuildSortableLink("First Name", "Index", "firstName", queryOptions)</th>
+        <th>@Html.BuildSortableLink("Last Name", "Index", "lastName", queryOptions)</th>
+        <th>@Html.BuildSortableLink("Biography", "Index", "biography", queryOptions)</th>
         <th>Actions</th>
     </tr>
     <tbody data-bind="foreach: authors">
         <tr>
-            <td data-bind="text: FirstName"></td>
-            <td data-bind="text: LastName"></td>
-            <td data-bind="text: Biography"></td>
+            <td data-bind="text: firstName"></td>
+            <td data-bind="text: lastName"></td>
+            <td data-bind="text: biography"></td>
             <td>
-                <a data-bind="attr: {href:'@Url.Action("Details")/'+Id }" class="btn btn-info">Details</a>
-                <a data-bind="attr: {href:'@Url.Action("Edit")/'+Id }" class="btn btn-primary">Edit</a>
-                <a data-bind="attr: {href:'@Url.Action("Delete")/'+Id }" class="btn btn-danger">Delete</a>
+                <a data-bind="attr: {href:'@Url.Action("Details")/'+id }" class="btn btn-info">Details</a>
+                <a data-bind="attr: {href:'@Url.Action("Edit")/'+id }" class="btn btn-primary">Edit</a>
+                <a data-bind="click:$parent.ShowDeleteModal, attr: {href:'@Url.Action("Delete")/'+id }" class="btn btn-danger">Delete</a>
             </td>
         </tr>
     </tbody>
@@ -38,12 +38,9 @@
 
 @section Scripts {
     <script>
-        function ViewModel(Authors) {
-            var self = this;
-            self.authors = Authors;
-        }
+        
         var authorsvm = @Html.HtmlConvertToJson(Model);
-        var viewModel = new ViewModel(authorsvm);
+        var viewModel = new AuthorIndexViewModel(authorsvm);
         ko.applyBindings(viewModel);
 
     </script>
