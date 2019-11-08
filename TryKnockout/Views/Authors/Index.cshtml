@@ -31,18 +31,12 @@
             </td>
         </tr>
     </tbody>
-
-
 </table>
 @Html.BuildNextPreviousLinks(queryOptions, "Index")
-
 @section Scripts {
     @Scripts.Render("/Scripts/ViewModels/AuthorIndexViewModel.js")
     <script>
-
         var viewModel = new AuthorIndexViewModel(@Html.HtmlConvertToJson(Model));
         ko.applyBindings(viewModel);
-
     </script>
-
 }

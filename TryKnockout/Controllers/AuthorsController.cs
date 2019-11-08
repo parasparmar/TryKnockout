@@ -35,22 +35,22 @@ namespace TryKnockout.Controllers
             return View("Form", new Author());
         }
 
-        // POST: Authors/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Biography")] Author author)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Authors.Add(author);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //// POST: Authors/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Biography")] Author author)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Authors.Add(author);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(author);
-        }
+        //    return View(author);
+        //}
 
         // GET: Authors/Edit/5
         public ActionResult Edit(int? id)
@@ -64,7 +64,7 @@ namespace TryKnockout.Controllers
             {
                 return HttpNotFound();
             }
-            return View(author);
+            return View("Form", author);
         }
 
         // POST: Authors/Edit/5
