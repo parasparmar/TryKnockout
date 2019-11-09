@@ -21,28 +21,13 @@ namespace TryKnockout.Controllers
         public ActionResult Index([Form] QueryOptions queryOptions)
         {
             var start = (queryOptions.CurrentPage - 1) * queryOptions.PageSize;
-            //var authors = db.Authors.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize)
+            //var authors = db.Authors.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize);
             var authors = db.Authors.ToList();
-            queryOptions.TotalPages = (int)Math.Ceiling((double)db.Authors.Count() / queryOptions.PageSize);
+            queryOptions.TotalPages =1+ (int)Math.Ceiling((double)db.Authors.Count() / queryOptions.PageSize);
 
             ViewBag.QueryOptions = queryOptions;
             return View(authors.ToList());
         }
-
-        // GET: Authors/Details/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Author author = db.Authors.Find(id);
-        //    if (author == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View("Form", author);
-        //}
 
         // GET: Authors/Create
         public ActionResult Create()
@@ -50,22 +35,22 @@ namespace TryKnockout.Controllers
             return View("Form", new Author());
         }
 
-        // POST: Authors/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Biography")] Author author)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Authors.Add(author);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //// POST: Authors/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Biography")] Author author)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Authors.Add(author);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(author);
-        }
+        //    return View(author);
+        //}
 
         // GET: Authors/Edit/5
         public ActionResult Edit(int? id)
@@ -79,7 +64,7 @@ namespace TryKnockout.Controllers
             {
                 return HttpNotFound();
             }
-            return View(author);
+            return View("Form", author);
         }
 
         // POST: Authors/Edit/5

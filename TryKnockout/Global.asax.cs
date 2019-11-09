@@ -19,9 +19,9 @@ namespace TryKnockout
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //var bookContext = new BookContext();
-            //Database.SetInitializer(new BookInitializer());
-            //bookContext.Database.Initialize(true);
+            var bookContext = new BookContext();
+            Database.SetInitializer(new BookInitializer());
+            bookContext.Database.Initialize(true);
         }
     }
 }
