@@ -23,8 +23,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("About Authors", "Index", "Authors")</li>
-                    <li>@Html.ActionLink("About Books", "Index", "Books")</li>
+                    <li>@Html.ActionLink("Authors API", "Index", "Authors")</li>
+                    <li>@Html.ActionLink("About Authors MVC", "Index", "Authors")</li>
                 </ul>
             </div>
         </div>
@@ -39,8 +39,9 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/knockout-3.5.1.debug.js"></script>
-    @Scripts.Render("/Scripts/Services/PagingService.js",
+
+    @Scripts.Render("/Scripts/knockout-3.5.1.debug.js," +
+    "/Scripts/Services/PagingService.js",
     "/Scripts/ViewModels/AuthorIndexViewModel.js")
     @RenderSection("scripts", required: false)
 </body>

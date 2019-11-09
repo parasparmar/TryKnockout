@@ -14,9 +14,9 @@ using TryKnockout.Models;
 using TryKnockout.ViewModels;
 using AutoMapper;
 
-namespace TryKnockout.Controllers.api
+namespace TryKnockout.Controllers.Api
 {
-    public class Authors : ApiController
+    public class AuthorsController : ApiController
     {
         private BookContext db = new BookContext();
         MapperConfiguration config = new MapperConfiguration(cfg => cfg.CreateMap<Author, AuthorViewModel>());
