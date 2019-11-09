@@ -7,6 +7,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using TryKnockout.DAL;
 using System.Data.Entity;
+using AutoMapper;
+using TryKnockout.Models;
+using TryKnockout.ViewModels;
 
 namespace TryKnockout
 {
@@ -22,6 +25,8 @@ namespace TryKnockout
             var bookContext = new BookContext();
             Database.SetInitializer(new BookInitializer());
             bookContext.Database.Initialize(true);
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Author, AuthorViewModel>());
         }
     }
 }

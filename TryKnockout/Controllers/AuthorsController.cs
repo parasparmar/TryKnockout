@@ -10,6 +10,7 @@ using System.Web.ModelBinding;
 using System.Web.Mvc;
 using TryKnockout.DAL;
 using TryKnockout.Models;
+using AutoMapper;
 
 namespace TryKnockout.Controllers
 {
@@ -23,8 +24,7 @@ namespace TryKnockout.Controllers
             var start = (queryOptions.CurrentPage - 1) * queryOptions.PageSize;
             //var authors = db.Authors.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize);
             var authors = db.Authors.ToList();
-            queryOptions.TotalPages =1+ (int)Math.Ceiling((double)db.Authors.Count() / queryOptions.PageSize);
-
+            queryOptions.TotalPages = 1 + (int)Math.Ceiling((double)db.Authors.Count() / queryOptions.PageSize);
             ViewBag.QueryOptions = queryOptions;
             return View(authors.ToList());
         }
