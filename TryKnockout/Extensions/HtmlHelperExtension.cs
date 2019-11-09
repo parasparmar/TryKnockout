@@ -19,6 +19,34 @@ namespace TryKnockout
             };
             return new HtmlString(JsonConvert.SerializeObject(model, settings));
         }
+        public static MvcHtmlString BuildKnockoutSortableLink(this HtmlHelper htmlHelper,
+                    string fieldName, string actionName, string sortField)
+        {
+            var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
+            return new MvcHtmlString(string.Format(
+            "<a href=\"{0}\" data-bind=\"click: pagingService.sortEntitiesBy\"" +
+            " data-sort-field=\"{1}\">{2} " +
+            "<span data-bind=\"css: pagingService.buildSortIcon('{1}')\"></span></a>",
+            urlHelper.Action(actionName),
+            sortField,
+            fieldName));
+        }
+        public static MvcHtmlString BuildKnockoutNextPreviousLinks(
+        this HtmlHelper htmlHelper, string actionName)
+        {
+            var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
+            return new MvcHtmlString(string.Format(
+            "<nav>" +
+" <ul class=\"pager\">" +
+" <li data-bind=\"css: pagingService.buildPreviousClass()\">" +
+" <a href=\"{0}\" data-bind=\"click: pagingService.previousPage\">Previous </ a ></ li > " +
+" <li data-bind=\"css: pagingService.buildNextClass()\">" +
+" <a href=\"{0}\" data-bind=\"click: pagingService.nextPage\">Next</ a ></ li ></ li > " +
+" </ul>" +
+"</nav>",
+            @urlHelper.Action(actionName)
+            ));
+        }
 
         public static MvcHtmlString BuildSortableLink(this HtmlHelper htmlHelper, string fieldName, string actionName, string sortField, QueryOptions queryOptions)
         {
