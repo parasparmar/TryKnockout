@@ -26,12 +26,9 @@
                 <td data-bind="text: lastName"></td>
                 <td data-bind="text: biography"></td>
                 <td>
-                    <a data-bind="attr: {href:'@Url.Action("Details")/'+id }"
-                       class="btn btn-info">Details</a>
-                    <a data-bind="attr: {href:'@Url.Action("Edit")/'+id }"
-                       class="btn btn-primary">Edit</a>
-                    <a data-bind="click: $parent.showDeleteModal, attr: {href:'@Url.Action("Delete")/'+id }"
-                       class="btn btn-danger">Delete</a>
+                    <a data-bind="attr: {href:'@Url.Action("Details")/'+id }" class="btn btn-info">Details</a>
+                    <a data-bind="attr: {href:'@Url.Action("Edit")/'+id }" class="btn btn-primary">Edit</a>
+                    <a data-bind="click: $parent.showDeleteModal, attr: {href:'@Url.Action("Delete")/'+id }" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         </tbody>
@@ -43,7 +40,7 @@
         <span aria-hidden="true">&times;</span>
         <span class="sr-only">Close</span>
     </button>
-    There are no authors to diplay. Click @Html.ActionLink("here", "Create") to create one now.
+    There are no authors to diplay. Click @Html.ActionLink("here", "Form") to create one now.
 </div>
 @section Scripts {
     

@@ -19,19 +19,20 @@ namespace TryKnockout.Controllers
     {
         private BookContext db = new BookContext();
         MapperConfiguration config = new MapperConfiguration(cfg => cfg.CreateMap<Author, AuthorViewModel>());
-
+        
         // GET: Authors
         public ActionResult Index([Form] QueryOptions queryOptions)
         {
             var start = (queryOptions.CurrentPage - 1) * queryOptions.PageSize;
-            var authors = db.Authors.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize);
+            //var authors = db.Authors.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize);
+            var authors = db.Authors.ToList();
             queryOptions.TotalPages = (int)Math.Ceiling((double)db.Authors.Count() / queryOptions.PageSize);
-
             IMapper iMapper = config.CreateMapper();
+
+
 
             return View(new ResultList<AuthorViewModel>
             {
-
                 QueryOptions = queryOptions,
                 Results = iMapper.Map<List<AuthorViewModel>>(authors.ToList())
             });

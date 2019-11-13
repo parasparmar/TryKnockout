@@ -20,7 +20,11 @@ namespace TryKnockout
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js", 
+                      "~/Scripts/knockout-3.5.1.debug.js",
+                      "~/Scripts/Services/PagingService.js",
+                      "~/Scripts/ViewModels/AuthorFormViewModel.js",
+                      "~/Scripts/ViewModels/AuthorIndexViewModel.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
